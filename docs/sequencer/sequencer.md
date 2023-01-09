@@ -115,7 +115,7 @@ def tau_update_check(batch_contribution: BatchContribution, batch_transcript: Ba
     for (contribution, transcript) in zip(batch_contribution.contributions, batch_transcript.transcripts):
         tau = contribution.powers_of_tau.g1_powers[1]
         transcript_product = transcript.witness.running_products[1] #transcript.witness.running_products is a list, we probably want to take it's 2nd element
-        pk = contribution.pot_pubkey #Check: contribution.pot_pubkey is only OPTIONAL
+        pk = contribution.pot_pubkey #We allow pot_pubkey to be None
         if bls.pairing(transcript_product, pk) != bls.pairing(tau, bls.G2.g2):
                 return False
     return True
