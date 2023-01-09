@@ -107,7 +107,8 @@ def non_zero_check(batch_contribution: BatchContribution) -> bool:
 
 _Note:_ The following pairing checks SHOULD be batched via a random linear combination which would reduce the number of final exponentiations to 2 and decrease the number of Miller loops needed.
 
-- __Tau update construction__ - Verify that the latest contribution is correctly built on top of the previous ones. Let $[\tau^1_{k}]\_1$ be the first power of tau from the most recent ( $k$ -th )`contribution` and $[\pi_{k - 1}] := [\tau^1_{k-1}]\_1$ be the transcript after updating from the previous correct `contribution`.  Verifying that $\tau$ was updated correctly can then be performed by checking $e([\pi_{k-1}]\_1, [pk_{k}]\_2) \stackrel{?}{=}e([\pi_{k}]_1, g_2)$, where [pk_{2}]_k is the public key of the $k$-th contribution.
+- __Tau update construction__ - Verify that the latest contribution is correctly built on top of the previous ones. Let $[\tau^1_{k}]\_1$ be the first power of tau from the most recent ( $k$ -th )`contribution` and $[\pi_{k - 1}] := [\tau^1_{k-1}]\_1$ be the transcript after updating from the previous correct `contribution`.  Verifying that $\tau$ was updated correctly can then be performed by checking 
+$e([\pi_{k-1}]\_1, [pk_{k}]\_2) \stackrel{?}{=}e([\pi_{k}]\_1, g\_2)$, where $[pk_{2}]\_k$ is the public key of the $k$-th contribution.
 
 ```python
 def tau_update_check(batch_contribution: BatchContribution, batch_transcript: BatchTranscript) -> bool:
